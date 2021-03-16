@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
+
+        <TextView
+            android:id="@+id/excution8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:fontFamily="@font/nanumsquareroundb"
+            android:gravity="left"
+            android:text="제목"
+            android:textColor="#353535"
+            android:textSize="14sp" />
+
+        <View
+            android:id="@+id/view12"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:background="#d1d1d1" />
+
+        <EditText
+            android:id="@+id/unedit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:textColor="#353535"
+            android:textSize="18sp" />
+
+
+        <TextView
+            android:id="@+id/excution3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:fontFamily="@font/nanumsquareroundb"
+            android:gravity="left"
+            android:text="날짜"
+            android:textColor="#353535"
+            android:textSize="14sp" />
+
+        <View
+            android:id="@+id/view6"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:background="#d1d1d1" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/today"
+                android:layout_width="50dp"
+                android:layout_height="25dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/bluebutton"
+                android:fontFamily="@font/nanumsquareroundb"
+                android:text="오늘"
+                android:textSize="14sp" />
+
+            <Button
+                android:id="@+id/tomorrow"
+                android:layout_width="50dp"
+                android:layout_height="25dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/graybutton"
+                android:fontFamily="@font/nanumsquareroundb"
+                android:text="내일"
+                android:textSize="14sp" />
+
+            <Button
+                android:id="@+id/dayset"
+                android:layout_width="80dp"
+                android:layout_height="25dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/graybutton"
+                android:fontFamily="@font/nanumsquareroundb"
+                android:text="날짜 설정"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/unstartday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/nanumsquarer"
+                android:gravity="center"
+                android:textColor="#353535"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/excution5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/nanumsquareroundb"
+            android:gravity="left"
+            android:text="우선순위"
+            android:textColor="#353535"
+            android:textSize="14sp" />
+
+        <View
+            android:id="@+id/view8"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:background="#d1d1d1" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/unone"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/bluebutton"
+                android:fontFamily="@font/nanumsquareroundb"
+                android:text="1"
+                android:textSize="14sp" />
+
+            <Button
+                android:id="@+id/untwo"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/graybutton"
+                android:fontFamily="@font/nanumsquareroundb"
+                android:text="2"
+                android:textSize="14sp" />
+
+            <Button
+                android:id="@+id/unthree"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/graybutton"
+                android:fontFamily="@font/nanumsquareroundb"
+                android:text="3"
+                android:textSize="14sp" />
+
+            <Button
+                android:id="@+id/unfour"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/graybutton"
+                android:fontFamily="@font/nanumsquareroundb"
+                android:text="4"
+                android:textSize="14sp" />
+
+            <Button
+                android:id="@+id/unfive"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/graybutton"
+                android:fontFamily="@font/nanumsquareroundb"
+                android:text="5"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/excution7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/nanumsquareroundb"
+            android:gravity="left"
+            android:text=" 알람"
+            android:textColor="#353535"
+            android:textSize="14sp" />
+
+        <View
+            android:id="@+id/view11"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:background="#d1d1d1" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/noalarm"
+                android:layout_width="50dp"
+                android:layout_height="25dp"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/bluebutton"
+                android:fontFamily="@font/nanumsquareroundb"
+                android:text="없음"
+                android:textSize="14sp" />
+
+            <Button
+                android:id="@+id/alram"
+                android:layout_width="80dp"
+                android:layout_height="25dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/graybutton"
+                android:fontFamily="@font/nanumsquareroundb"
+                android:text="알람 설정"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/alramtext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/nanumsquarer"
+                android:gravity="center"
+                android:textColor="#353535"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
