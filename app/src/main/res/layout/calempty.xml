@@ -4,4 +4,15 @@
     android:id="@+id/item_layout"
     android:layout_width="match_parent"
     android:layout_height="45dp"
-    android:background="#00000000"></RelativeLayout>
+    android:background="#00000000">
+
+    <TextView
+        android:id="@+id/caltext"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:fontFamily="@font/nanumsquareroundr"
+        android:gravity="center"
+        android:text="30"
+        android:textColor="#E2E2E2"
+        android:textSize="16sp" />
+</RelativeLayout>

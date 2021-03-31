@@ -9,34 +9,31 @@ import androidx.room.Update;
 import java.util.List;
 @Dao
 public interface ItemDao {
-    @Query("DELETE FROM item")
-    void alldelete();
-    @Query("SELECT * FROM item")
-    List<Item> getAll();
 
-    @Query("SELECT * FROM item WHERE id = :id")
-    List<Item> getid(int id);
+    //특정 요일에 맞는 데이터을 구하는 쿼리
+    @Query("SELECT * FROM item WHERE dayweek = :i AND pri = :p")
+    List<Item> getdayweek (int i,int p);
+    //완료여부를 판단하여 특정 요일에 맞는 데이터을 구하는 쿼리
+    @Query("SELECT * FROM item WHERE dayweek = :i AND pri = :p AND complete = :c")
+    List<Item> getdayweekcom (int i, int p, int c);
+    //완료여부를 판단하여 특정 날짜에 맞는 데이터을 구하는 쿼리
+    @Query("SELECT * FROM item WHERE dayweek = '0' AND year = :y AND month = :m AND day = :d AND pri = :i AND complete = :c")
+    List<Item> getdaycom (int y, int m, int d, int i, int c);
+    //특정 날짜에 맞는 데이터을 구하는 쿼리
+    @Query("SELECT * FROM item WHERE dayweek = '0' AND year = :y AND month = :m AND day = :d AND pri = :i ")
+    List<Item> getday (int y, int m, int d, int i);
+    //특정 데이터 삭제
+    @Query("DELETE FROM item WHERE id = :id")
+    void deleteid(int id);
+    //완료여부 변경
+    @Query("UPDATE item SET complete = :com WHERE id = :id")
+    void updatecom(int com, int id);
+    //시간 측정
+    @Query("UPDATE item SET stopwatch = :stop WHERE id = :id")
+    void updatestop(int stop, int id);
 
-
-
-    @Query("SELECT * FROM item WHERE pri = :i")
-    List<Item> thing (int i);
-
-
-    @Query("SELECT * FROM item WHERE dayweek = :i")
-    List<Item> getdayweek (int i);
-
-    @Query("SELECT * FROM item WHERE dayweek = '0' AND year = :y AND month = :m AND day = :d")
-    List<Item> getday (int y, int m, int d);
-
-
+    //추가
     @Insert
     void insert(Item item);
-
-    @Update
-    void update(Item item);
-
-    @Delete
-    void deleto(Item item);
 
 }

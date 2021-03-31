@@ -240,69 +240,6 @@
 
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/excution7"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:layout_weight="1"
-            android:fontFamily="@font/nanumsquareroundb"
-            android:gravity="left"
-            android:text="알람"
-            android:textColor="#353535"
-            android:textSize="14sp" />
-
-        <View
-            android:id="@+id/view11"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_weight="1"
-            android:background="#d1d1d1" />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/noalarm"
-                android:layout_width="50dp"
-                android:layout_height="25dp"
-                android:layout_margin="10dp"
-                android:layout_weight="1"
-                android:background="@drawable/bluebutton"
-                android:fontFamily="@font/nanumsquareroundb"
-                android:text="없음"
-                android:textSize="14sp" />
-
-            <Button
-                android:id="@+id/alram"
-                android:layout_width="80dp"
-                android:layout_height="25dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:layout_weight="1"
-                android:background="@drawable/graybutton"
-                android:fontFamily="@font/nanumsquareroundb"
-                android:text="알람 설정"
-                android:textSize="14sp" />
-
-            <TextView
-                android:id="@+id/alramtext2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="5dp"
-                android:layout_weight="1"
-                android:fontFamily="@font/nanumsquarer"
-                android:gravity="center"
-                android:textColor="#353535"
-                android:textSize="12sp" />
-
-        </LinearLayout>
-
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

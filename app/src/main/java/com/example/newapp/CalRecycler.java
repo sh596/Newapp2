@@ -6,17 +6,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 
 public class CalRecycler extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
+    //날짜 클릭 인터페이스
     public interface Onsettodo{
         void OnSet(View view,int pos);
     }
@@ -24,23 +27,23 @@ public class CalRecycler extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private final int emptytp = 0;
     private final int daytp = 1;
 
-    GregorianCalendar cal = new GregorianCalendar();
-    GregorianCalendar calendar = new GregorianCalendar(cal.get(Calendar.YEAR),cal.get(Calendar.MONTH) ,1,0,0,0);
-    int dayofweek = calendar.get(Calendar.DAY_OF_WEEK)-2;
-    private int selectnum = dayofweek + cal.get(Calendar.DATE);;
+    private GregorianCalendar cal = new GregorianCalendar();
+    private GregorianCalendar calendar = new GregorianCalendar(cal.get(Calendar.YEAR),cal.get(Calendar.MONTH) ,1,0,0,0);
+    private int dayofweek = calendar.get(Calendar.DAY_OF_WEEK)-1;
+    private int selectnum = dayofweek + cal.get(Calendar.DATE)-1;//선택 값
 
     Onsettodo mlistener = null;
 
     private Context context;
-    private List<Object> mcalenderlist;
+    private ArrayList<DateItem> mcalenderlist;
 
-    public CalRecycler(List<Object> mcalenderlist) {
+    public CalRecycler(ArrayList<DateItem> mcalenderlist) {
         this.mcalenderlist = mcalenderlist;
     }
 
     public void setOnClickListener(Onsettodo onsettodo){mlistener = onsettodo;}
 
-    public void setCalenderList(List<Object> calenderList) {
+    public void setCalenderList(ArrayList<DateItem> calenderList) {
         mcalenderlist = calenderList;
         notifyDataSetChanged();
 
@@ -49,12 +52,7 @@ public class CalRecycler extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     @Override
     public int getItemViewType(int position) {
-        Object item = mcalenderlist.get(position);
-        if (item instanceof String){
-            return emptytp;
-        }else{
-            return daytp;
-        }
+        return mcalenderlist.get(position).getViewtype();
     }
 
 
@@ -64,88 +62,71 @@ public class CalRecycler extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
 
-        if(viewType == Viewtp.emptyv){
-            EmptyViewHolder viewHolder = new EmptyViewHolder(inflater.inflate(R.layout.calempty,parent,false));
-
-
-            return viewHolder;
+        if(viewType == Code.viewtype.emptycode){
+            return new EmptyViewHolder(inflater.inflate(R.layout.calempty,parent,false));
         }else{
-
             return new NumViewHolder(inflater.inflate(R.layout.calnum,parent,false));
-
         }
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-
-
-
-
-        /*맨 처음 오늘 날짜로 선택 시킴*/
-
         int viewtp = getItemViewType(position);
-
+        DateItem item = mcalenderlist.get(position);
         if (viewtp == emptytp) {
-            EmptyViewHolder holder1 = (EmptyViewHolder) holder;
-            EmptyDay model = new EmptyDay();
-
-            holder1.onBind(model);
+            EmptyViewHolder holder1 = (EmptyViewHolder)holder;
+            holder1.onBind(item,position);
         }
         if (viewtp == daytp){
             NumViewHolder holder1 = (NumViewHolder)holder;
-            Object item = mcalenderlist.get(position);
-            Day model = new Day();
-            if (item instanceof Calendar){
-                model.setCalendar((Calendar) item);
-            }
 
-           if(selectnum == position){/*자신의 포지션과 같아 지면 선택으로 표시*/
+            //포지션과 선택 값이 같을 시 표시함
+            if(selectnum == position){
                 holder1.calbtn.setBackground(ContextCompat.getDrawable(context,R.drawable.backline));
             }else {
                holder1.calbtn.setBackgroundColor(Color.parseColor("#00000000"));
                holder1.calbtn.setTextColor(Color.parseColor("#ffffff"));
-           }
-            holder1.onBind(model,position);
+            }
+            holder1.onBind(item,position);
         }
     }
-
+    //전체 삭제
     public void removeall(){ mcalenderlist.clear();}
 
     @Override
     public int getItemCount() {
-        if (mcalenderlist != null){
-            return mcalenderlist.size();
-        }
-        return 0;
+        return mcalenderlist.size();
     }
 
 
 
     public class EmptyViewHolder extends RecyclerView.ViewHolder {
-        View view;
+        public TextView caltext;
         public EmptyViewHolder(@NonNull View itemView) {
             super(itemView);
+            caltext = itemView.findViewById(R.id.caltext);
         }
-        public void onBind(ViewModel viewModel){
 
+        public void onBind(DateItem item, final int position){
+            caltext.setText(Integer.toString(item.getDate()));
         }
     }
+
     public class NumViewHolder extends RecyclerView.ViewHolder {
-        Button calbtn;
+        public Button calbtn;
         public NumViewHolder(@NonNull View itemView) {
             super(itemView);
             calbtn = itemView.findViewById(R.id.calbtn);
         }
-        public void onBind(ViewModel viewModel, final int position){
-            String day = ((Day)viewModel).getDay();
-            calbtn.setText(day);
+        public void onBind(DateItem item, final int position){
+
+            calbtn.setText(Integer.toString(item.getDate()));
+            //클릭 시 선택값을 포지션으로 바꾸고 갱신시킴
             calbtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     int pos = getAdapterPosition();
-                    selectnum = position;/*클릭시 해당 아이템의 선택 값을 자신의 포지션으로 변경*/
-                    /*데이터를 다시 불러와서 자신의 선택값을 적용*/
+                    selectnum = position;
                     if(pos != RecyclerView.NO_POSITION){
                         mlistener.OnSet(view,pos);
                         notifyDataSetChanged();

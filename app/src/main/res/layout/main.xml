@@ -23,10 +23,10 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/day"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/nanumsquareroundr"
+        android:fontFamily="@font/nanumsquareroundb"
         android:text="2021-02-11"
         android:textColor="#ffffff"
         android:textSize="18sp"
@@ -53,7 +53,7 @@
         app:tabIndicatorColor="#FFFFFF"
         app:tabIndicatorFullWidth="false"
         app:tabIndicatorGravity="top"
-        app:tabIndicatorHeight="5dp"
+        app:tabIndicatorHeight="0dp"
         app:tabMode="fixed"
         app:tabSelectedTextColor="#fff"
         app:tabTextAppearance="@style/tab_text"
@@ -70,10 +70,11 @@
             android:text="today" />
 
         <com.google.android.material.tabs.TabItem
+            android:id="@+id/tabItem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/nanumsquareroundb"
             android:text="week" />
+
     </com.google.android.material.tabs.TabLayout>
 
     <Button
@@ -91,16 +92,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
-
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        app:layout_constraintBottom_toBottomOf="@+id/view3"
-        app:layout_constraintEnd_toStartOf="@+id/textView3"
-        app:layout_constraintHorizontal_bias="0.05"
-        app:layout_constraintStart_toStartOf="@+id/view3"
-        app:layout_constraintTop_toTopOf="@+id/vp"
-        app:srcCompat="@drawable/ic_baseline_menu_24" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

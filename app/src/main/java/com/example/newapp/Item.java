@@ -11,41 +11,37 @@ public class Item implements Serializable {
     @PrimaryKey(autoGenerate = true)
     public int id;
 
-    @ColumnInfo(name = "title")
+    @ColumnInfo(name = "title")//제목
     public String title;
 
-    @ColumnInfo(name = "starttime")
-    public int starttime;
-
-    @ColumnInfo(name = "stopwatch")
+    @ColumnInfo(name = "stopwatch")//시간 기록
     public int stopwatch;
 
-    @ColumnInfo(name = "pri")
+    @ColumnInfo(name = "pri")//우선순위
     public int priority;
 
-    @ColumnInfo(name = "complite")
-    public int complite;
+    @ColumnInfo(name = "complete")//완료여부
+    public int complete;
 
-    @ColumnInfo(name = "dayweek")
+    @ColumnInfo(name = "dayweek")//요일
     public int dayweek;
 
-    @ColumnInfo(name = "year")
+    @ColumnInfo(name = "year")//년도
     public int year;
 
-    @ColumnInfo(name = "month")
+    @ColumnInfo(name = "month")//달
     public int month;
 
-    @ColumnInfo(name = "day")
+    @ColumnInfo(name = "day")//일
     public int day;
 
 
-    public Item(String title, int starttime, int stopwatch, int priority, int complite, int dayweek, int year, int month, int day) {
+    public Item(String title, int stopwatch, int priority, int complete, int dayweek, int year, int month, int day) {
         this.id = id;
         this.title = title;
-        this.starttime = starttime;
         this.stopwatch = stopwatch;
         this.priority = priority;
-        this.complite = complite;
+        this.complete = complete;
         this.dayweek = dayweek;
         this.year = year;
         this.month = month;

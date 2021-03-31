@@ -3,6 +3,7 @@ package com.example.newapp;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -19,12 +20,13 @@ public class Add_Activity extends AppCompatActivity {
     Add_Repeat add_repeat;
     Add_UnRepeat add_unRepeat;
 
-
     private Button rebutton;
     private Button unrebutton;
     private Button addbutton;
 
-    boolean repeate = false;
+    private ImageButton backbtn;
+
+    boolean repeate = false; // 반복여부 값
 
     private FragmentManager fm;
     private FragmentTransaction ft;
@@ -36,7 +38,6 @@ public class Add_Activity extends AppCompatActivity {
 
         final RDatabase db = RDatabase.getAppDatabase(this);
 
-
         fm = getSupportFragmentManager();
         rebutton = findViewById(R.id.repeat_button);
         unrebutton = findViewById(R.id.unrepeat_button);
@@ -44,6 +45,9 @@ public class Add_Activity extends AppCompatActivity {
         add_repeat = new Add_Repeat();
         add_unRepeat = new Add_UnRepeat();
 
+        backbtn = findViewById(R.id.backbtn);
+
+        //프래그먼트 설정
         ft = fm.beginTransaction();
         ft.replace(R.id.frameLayout,add_unRepeat).commitAllowingStateLoss();
         rebutton.setOnClickListener(new View.OnClickListener() {
@@ -72,21 +76,18 @@ public class Add_Activity extends AppCompatActivity {
             }
         });
 
+        //추가 버튼을 클릭했을 때
         addbutton = findViewById(R.id.addButton);
         addbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                GregorianCalendar calendar = new GregorianCalendar();
-
                 if(repeate){
-
                     String name = add_repeat.edit.getText().toString();
 
-                    if (!(name.getBytes().length == 0)){
-                        int start = add_repeat.realram;
-                        int num = add_repeat.num;
+                    if (!(name.getBytes().length == 0)){//제목이 없으면 추가되지 않음
+                        int num = add_repeat.num;//우선 순위
                         int days = add_repeat.days;
-                        db.itemDao().insert(new Item(name,start,0,num,0,days,0,0,0));
+                        db.itemDao().insert(new Item(name,0,num,0,days,0,0,0));
                         finish();
                     }else {
                         Toast.makeText(view.getContext(),"제목을 입력해주세요",Toast.LENGTH_SHORT).show();
@@ -95,13 +96,12 @@ public class Add_Activity extends AppCompatActivity {
 
                     String unname = add_unRepeat.unedittext.getText().toString();
 
-                    if (!(unname.getBytes().length == 0)){
-                        int start = add_unRepeat.unalram;
-                        int num = add_unRepeat.unnum;
+                    if (!(unname.getBytes().length == 0)){//제목이 없으면 추가되지 않음
+                        int num = add_unRepeat.unnum;//우선 순위
                         int day = add_unRepeat.unday;
                         int month = add_unRepeat.unmonth;
                         int year = add_unRepeat.unyear;
-                        db.itemDao().insert(new Item(unname,start,0,num,0,0,year,
+                        db.itemDao().insert(new Item(unname,0,num,0,0,year,
                                 month,day));
                         finish();
                     }else {
@@ -110,6 +110,13 @@ public class Add_Activity extends AppCompatActivity {
 
                 }
 
+            }
+        });
+        //뒤로가기 버튼
+        backbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
             }
         });
     }

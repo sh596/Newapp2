@@ -10,19 +10,30 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class Week extends Fragment {
-    View view;
-    RecyclerView recyclerView;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
+public class Week extends Fragment{
+
+    private RecyclerView calender;
+    private CalRecycler adapter;
+
+    public ArrayList<DateItem> mcalenderlist = new ArrayList<>();
+
+    private GregorianCalendar cal;
+    private GregorianCalendar cal2;
+
+    View view;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.week,container,false);
-        recyclerView = view.findViewById(R.id.recyclerweek);
-
-
+        calender = view.findViewById(R.id.calender);
 
 
         return view;
     }
+
+
 }

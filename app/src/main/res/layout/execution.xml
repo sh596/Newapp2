@@ -36,7 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
         android:fontFamily="@font/nanumsquareroundb"
-        android:text="00:00"
+        android:text="00:00:00"
         android:textColor="#fff"
         android:textSize="28sp"
         app:layout_constraintBottom_toTopOf="@+id/imageView"
@@ -73,22 +73,6 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/textView15"
         app:layout_constraintTop_toBottomOf="@+id/textView15"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-        android:id="@+id/startime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:fontFamily="@font/nanumsquareroundr"
-        android:text="9:00 시작"
-        android:textColor="#A0A0A0"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/starttitle"
-        app:layout_constraintTop_toBottomOf="@+id/starttitle"
         app:layout_constraintVertical_bias="0.0" />
 
     <LinearLayout
@@ -186,21 +170,6 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout4"
         app:layout_constraintVertical_bias="0.0" />
 
-    <TextView
-        android:id="@+id/starttitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:fontFamily="@font/nanumsquareroundb"
-        android:text="시작 시간"
-        android:textColor="#353535"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/days"
-        app:layout_constraintVertical_bias="0.0" />
-
     <LinearLayout
         android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
@@ -221,14 +190,14 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/imageView2"
+                android:id="@+id/comimage"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_gravity="center"
                 app:srcCompat="@drawable/ic_baseline_check_24" />
 
             <TextView
-                android:id="@+id/textView20"
+                android:id="@+id/comtext"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -252,14 +221,14 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/imageView2"
+                android:id="@+id/startimage"
                 android:layout_width="15dp"
                 android:layout_height="30dp"
                 android:layout_gravity="center"
                 app:srcCompat="@drawable/ic_tri" />
 
             <TextView
-                android:id="@+id/textView20"
+                android:id="@+id/starttext"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -287,7 +256,7 @@
         app:srcCompat="@drawable/ic_baseline_arrow_back_ios_24" />
 
     <ImageButton
-        android:id="@+id/more"
+        android:id="@+id/del"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
@@ -295,6 +264,6 @@
         android:background="#00000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_baseline_more_vert_24" />
+        android:src="@drawable/ic_baseline_delete_24" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class Todolist_recycler extends RecyclerView.Adapter<Todolist_recycler.ViewHolder>{
 
     public interface OnClickListener{
-        void OnClick(View view, int position, String title, int start,int stopwatch, int pri, int check, int dayweek, int year, int month, int day );
+        void OnClick(View view, int id, String title,int stopwatch, int pri, int check, int dayweek, int year, int month, int day );
     }
 
     private ArrayList<Item> items;
@@ -52,7 +52,7 @@ public class Todolist_recycler extends RecyclerView.Adapter<Todolist_recycler.Vi
     public class ViewHolder extends RecyclerView.ViewHolder {
 
 
-
+        TextView stop;
         TextView todo;
         TextView start;
 
@@ -64,22 +64,30 @@ public class Todolist_recycler extends RecyclerView.Adapter<Todolist_recycler.Vi
             super(itemView);
 
             todo = itemView.findViewById(R.id.todo1);
-            start = itemView.findViewById(R.id.starttime);
-            startbtn = itemView.findViewById(R.id.startbtn);
+            stop = itemView.findViewById(R.id.stop);
+            startbtn = itemView.findViewById(R.id.startbtn); //실행 버튼
             hex = itemView.findViewById(R.id.hex);
         }
         public void onBind(final Item item){
             todo.setText(item.title);
-            start.setText(item.starttime);
+
+            int shour = item.stopwatch/360;
+            int smin = item.stopwatch/60;
+            int ssec = item.stopwatch%60;
+            String time = String.format("%02d:%02d:%02d",shour,smin,ssec);
+            stop.setText(time);
+
+            //실행 버튼 클릭시 할 일의 정보를 전달한다
             startbtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    int pos = item.id;
+                    int pos = getAdapterPosition();
                     if(pos != RecyclerView.NO_POSITION){
-                        mlistener.OnClick(view,pos,item.title,item.starttime,item.stopwatch,item.priority,item.complite,item.dayweek,item.year,item.month,item.day);
+                        mlistener.OnClick(view,item.id,item.title,item.stopwatch,item.priority,item.complete,item.dayweek,item.year,item.month,item.day);
                     }
                 }
             });
+            //우선 순위에 따른 색상값
             switch (item.priority){
                 case 0:
                     pricolor = "#FFB0B0";
@@ -98,10 +106,11 @@ public class Todolist_recycler extends RecyclerView.Adapter<Todolist_recycler.Vi
                     break;
             }
             hex.setColorFilter(Color.parseColor(pricolor));
-            if(item.complite == 0){
+            // 완료시 체크로 표시
+            if(item.complete == 0){
                 startbtn.setImageResource(R.drawable.ic_tri);
                 startbtn.setColorFilter(Color.parseColor(pricolor));
-            }else if(item.complite == 1){
+            }else if(item.complete == 1){
                 startbtn.setImageResource(R.drawable.ic_check);
                 startbtn.setColorFilter(Color.parseColor(pricolor));
             }
