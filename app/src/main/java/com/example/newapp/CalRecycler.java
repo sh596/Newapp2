@@ -46,7 +46,6 @@ public class CalRecycler extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public void setCalenderList(ArrayList<DateItem> calenderList) {
         mcalenderlist = calenderList;
         notifyDataSetChanged();
-
     }
 
 

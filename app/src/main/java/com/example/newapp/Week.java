@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ import java.util.GregorianCalendar;
 
 public class Week extends Fragment{
 
-    private RecyclerView calender;
+    private RecyclerView calendar;
     private CalRecycler adapter;
 
     public ArrayList<DateItem> mcalendarlist = new ArrayList<>();
@@ -29,7 +30,8 @@ public class Week extends Fragment{
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.week,container,false);
-        calender = view.findViewById(R.id.calender);
+        calendar = view.findViewById(R.id.recyclerweek1);
+        GridLayoutManager manager = new GridLayoutManager(getContext(),7);
 
         cal = new GregorianCalendar();
         int m = cal.get(Calendar.MONTH);
@@ -38,28 +40,38 @@ public class Week extends Fragment{
 
         setcalender(cal2,y,m);
 
+        adapter = new CalRecycler(mcalendarlist);
+
+        adapter.setCalenderList(mcalendarlist);
+
+        calendar.setLayoutManager(manager);
+        calendar.setAdapter(adapter);
+
+
         return view;
     }
+
     public void setcalender(GregorianCalendar cal2 ,int year, int month){
         int day = cal.get(Calendar.DAY_OF_MONTH);
         int week = cal.get(Calendar.DAY_OF_WEEK);
 
+        int lastday = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
         int startday = day - week + 1;
 
         if(day - week < 0){
             int firstweek = cal2.get(Calendar.DAY_OF_WEEK);
             cal2 = new GregorianCalendar(year,month-1,0,0,0,0);
             for(int i = 1; i < firstweek; i++){
-                day = cal2.getActualMaximum(day) - firstweek;
-                mcalendarlist.add(new DateItem(day, 0));
-                day++;
+                int weekday = cal2.getActualMaximum(Calendar.DAY_OF_MONTH) - firstweek;
+                mcalendarlist.add(new DateItem(weekday, 0));
+                weekday++;
             }
-        }else if(day + 7 - week > cal.getActualMaximum(day)){
-            for(int i = startday; i < cal.getActualMaximum(day); i++){
+        }else if(day + 7 - week > lastday){
+            for(int i = startday; i < lastday; i++){
                 mcalendarlist.add(new DateItem(i,1));
             }
-            cal2 = new GregorianCalendar(year,month,cal.getActualMaximum(day),0,0,0);
-            for(int i = 1; i < cal2.get(Calendar.DAY_OF_WEEK) - 8; i++){
+            cal2 = new GregorianCalendar(year,month,lastday,0,0,0);
+            for(int i = 1; i < 8 - cal2.get(Calendar.DAY_OF_WEEK); i++){
                 mcalendarlist.add(new DateItem(i,0));
             }
 
