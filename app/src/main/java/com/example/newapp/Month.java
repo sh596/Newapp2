@@ -177,7 +177,7 @@ public class Month extends Fragment {
         int dayOfWeek = cal2.get(Calendar.DAY_OF_WEEK) - 1;// 비어있는 요일을 구함
         int max = cal2.getActualMaximum(Calendar.DAY_OF_MONTH);// 이번 달의 마지막 날짜
 
-        cal2 = new GregorianCalendar(y,m,0,0,0,0);
+        cal2 = new GregorianCalendar(y,m-1,0,0,0,0);
         int day = cal2.getActualMaximum(Calendar.DAY_OF_MONTH) - dayOfWeek + 1;
         for(int j = dayOfWeek; j > 0; j--){//비어있는 요일만큼 빈 뷰타입의 아이템을 생성
             mcalenderlist.add(new DateItem(day,0));
