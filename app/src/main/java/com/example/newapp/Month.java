@@ -186,8 +186,8 @@ public class Month extends Fragment {
         for (int j = 1; j <= max; j++){//이번 달의 날짜만큼 날짜를 생성
             mcalenderlist.add(new DateItem(j,1));
         }
-        cal2 = new GregorianCalendar(y,m,cal2.getActualMaximum(Calendar.DAY_OF_MONTH),0,0,0);
-        for (int j = 1; j < 7 - cal2.get(Calendar.DAY_OF_WEEK); j++){
+        cal2 = new GregorianCalendar(y,m,max,0,0,0);
+        for (int j = 1; j < 8 - cal2.get(Calendar.DAY_OF_WEEK); j++){
             mcalenderlist.add(new DateItem(j,0));
         }
 

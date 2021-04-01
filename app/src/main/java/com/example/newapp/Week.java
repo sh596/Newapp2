@@ -59,12 +59,15 @@ public class Week extends Fragment{
         int startday = day - week + 1;
 
         if(day - week < 0){
-            int firstweek = cal2.get(Calendar.DAY_OF_WEEK);
+            int firstweek = cal2.get(Calendar.DAY_OF_WEEK)-2;
             cal2 = new GregorianCalendar(year,month-1,0,0,0,0);
+            int weekday = cal2.getActualMaximum(Calendar.DAY_OF_MONTH) - firstweek;
             for(int i = 1; i < firstweek; i++){
-                int weekday = cal2.getActualMaximum(Calendar.DAY_OF_MONTH) - firstweek;
                 mcalendarlist.add(new DateItem(weekday, 0));
                 weekday++;
+            }
+            for(int i = day; i < i + 7 - week; i++){
+                mcalendarlist.add(new DateItem(i,1));
             }
         }else if(day + 7 - week > lastday){
             for(int i = startday; i < lastday; i++){
@@ -79,7 +82,7 @@ public class Week extends Fragment{
             for(int i = startday; i < startday + 6; i++){
                 mcalendarlist.add(new DateItem(i,1));
             }
-        }//bbbbbbb
+        }
     }
 
 
