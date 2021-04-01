@@ -79,8 +79,7 @@ public class Week extends Fragment{
             for(int i = startday; i < startday + 6; i++){
                 mcalendarlist.add(new DateItem(i,1));
             }
-        }//aaaaaaa
-
+        }//bbbbbbb
     }
 
 
