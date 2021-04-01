@@ -38,6 +38,7 @@ public class Week extends Fragment{
         int y = cal.get(Calendar.YEAR);
         cal2 = new GregorianCalendar(y,m,1,0,0,0);
 
+        mcalendarlist.clear();
         setcalender(cal2,y,m);
 
         adapter = new CalRecycler(mcalendarlist);
@@ -59,14 +60,14 @@ public class Week extends Fragment{
         int startday = day - week + 1;
 
         if(day - week < 0){
-            int firstweek = cal2.get(Calendar.DAY_OF_WEEK)-2;
-            cal2 = new GregorianCalendar(year,month-1,0,0,0,0);
-            int weekday = cal2.getActualMaximum(Calendar.DAY_OF_MONTH) - firstweek;
+            int firstweek = cal2.get(Calendar.DAY_OF_WEEK);
+            cal2 = new GregorianCalendar(year,month-1,1,0,0,0);
+            int weekday = cal2.getActualMaximum(Calendar.DAY_OF_MONTH) - firstweek + 2;
             for(int i = 1; i < firstweek; i++){
                 mcalendarlist.add(new DateItem(weekday, 0));
                 weekday++;
             }
-            for(int i = day; i < i + 7 - week; i++){
+            for(int i = day; i < day + 8 - week; i++){
                 mcalendarlist.add(new DateItem(i,1));
             }
         }else if(day + 7 - week > lastday){
