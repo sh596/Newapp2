@@ -21,11 +21,13 @@ public class CalRecycler extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     //날짜 클릭 인터페이스
     public interface Onsettodo{
-        void OnSet(View view,int pos);
+        void OnSet(View view,int pos, int viewtype);
     }
 
     private final int emptytp = 0;
     private final int daytp = 1;
+    private final int weekemptytp = 2;
+    int viewtp;
 
     private GregorianCalendar cal = new GregorianCalendar();
     private GregorianCalendar calendar = new GregorianCalendar(cal.get(Calendar.YEAR),cal.get(Calendar.MONTH) ,1,0,0,0);
@@ -70,21 +72,22 @@ public class CalRecycler extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        int viewtp = getItemViewType(position);
+        viewtp = getItemViewType(position);
         DateItem item = mcalenderlist.get(position);
         if (viewtp == emptytp) {
             EmptyViewHolder holder1 = (EmptyViewHolder)holder;
             holder1.onBind(item,position);
         }
-        if (viewtp == daytp){
+        if (viewtp == daytp || viewtp == weekemptytp){
             NumViewHolder holder1 = (NumViewHolder)holder;
 
             //포지션과 선택 값이 같을 시 표시함
             if(selectnum == position){
-                holder1.calbtn.setBackground(ContextCompat.getDrawable(context,R.drawable.backline));
+                holder1.calbtn.setBackground(ContextCompat.getDrawable(context,R.drawable.todo));
+                holder1.calbtn.setTextColor(Color.parseColor("#AEBAFF"));
             }else {
                holder1.calbtn.setBackgroundColor(Color.parseColor("#00000000"));
-               holder1.calbtn.setTextColor(Color.parseColor("#ffffff"));
+               holder1.calbtn.setTextColor(Color.parseColor("#FFFFFF"));
             }
             holder1.onBind(item,position);
         }
@@ -96,7 +99,6 @@ public class CalRecycler extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public int getItemCount() {
         return mcalenderlist.size();
     }
-
 
 
     public class EmptyViewHolder extends RecyclerView.ViewHolder {
@@ -127,7 +129,7 @@ public class CalRecycler extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                     int pos = getAdapterPosition();
                     selectnum = position;
                     if(pos != RecyclerView.NO_POSITION){
-                        mlistener.OnSet(view,pos);
+                        mlistener.OnSet(view,pos,viewtp);
                         notifyDataSetChanged();
                     }
 

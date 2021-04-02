@@ -105,7 +105,7 @@ public class Month extends Fragment {
         //달력 날짜 클릭시 이벤트
         adapter.setOnClickListener(new CalRecycler.Onsettodo() {
             @Override
-            public void OnSet(View view, int pos) {
+            public void OnSet(View view, int pos,int viewtype) {
                 settodolist(db,pos,caltodo);
             }
         });
