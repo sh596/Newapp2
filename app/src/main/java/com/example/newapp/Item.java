@@ -17,6 +17,9 @@ public class Item implements Serializable {
     @ColumnInfo(name = "stopwatch")//시간 기록
     public int stopwatch;
 
+    @ColumnInfo(name = "starttiem")
+    public int starttime;
+
     @ColumnInfo(name = "pri")//우선순위
     public int priority;
 
@@ -36,10 +39,11 @@ public class Item implements Serializable {
     public int day;
 
 
-    public Item(String title, int stopwatch, int priority, int complete, int dayweek, int year, int month, int day) {
+    public Item(String title, int stopwatch, int starttime ,int priority, int complete, int dayweek, int year, int month, int day) {
         this.id = id;
         this.title = title;
         this.stopwatch = stopwatch;
+        this.starttime = starttime;
         this.priority = priority;
         this.complete = complete;
         this.dayweek = dayweek;

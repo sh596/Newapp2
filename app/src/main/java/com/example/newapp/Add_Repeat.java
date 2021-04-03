@@ -20,6 +20,7 @@ public class Add_Repeat extends Fragment {
     public int days;
     public int num;
     static EditText edit;
+    public int starttime;
 
     private Button mon;
     private Button tue;
@@ -34,6 +35,9 @@ public class Add_Repeat extends Fragment {
     private Button three;
     private Button four;
     private Button five;
+
+    private Button nonealram;
+    private Button setalram
 
     private Dialog dialog;
     private Dialog timedialog;
@@ -172,6 +176,11 @@ public class Add_Repeat extends Fragment {
         three.setBackground(ContextCompat.getDrawable(view.getContext(),R.drawable.graybutton));
         four.setBackground(ContextCompat.getDrawable(view.getContext(),R.drawable.graybutton));
         five.setBackground(ContextCompat.getDrawable(view.getContext(),R.drawable.graybutton));
+    }
+    //버튼 전체 색상 변경
+    public void sealram(){
+
+
     }
 
 
