@@ -1,5 +1,6 @@
 package com.example.newapp;
 
+import android.app.Notification;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -7,6 +8,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
+import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager.widget.ViewPager;
 
@@ -53,6 +55,8 @@ public class Main_Activity extends FragmentActivity {
 
         tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(vp);
+
+
     }
 
 
