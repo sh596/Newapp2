@@ -2,6 +2,7 @@ package com.example.newapp;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.TimePicker;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -27,6 +29,8 @@ public class Add_UnRepeat extends Fragment {
     public int unday;
     public int unnum;
     public EditText unedittext;
+    public int starttime;
+
     private Button one;
     private Button two;
     private Button three;
@@ -39,6 +43,10 @@ public class Add_UnRepeat extends Fragment {
 
     private GregorianCalendar calendar;
 
+    private Button nonealram;
+    private Button setalram;
+
+    private TextView alramtext;
     private TextView unstart;
     private Dialog dialog;
 
@@ -49,6 +57,7 @@ public class Add_UnRepeat extends Fragment {
 
         unstart = view.findViewById(R.id.unstartday);
         unedittext = view.findViewById(R.id.unedit);
+        alramtext = view.findViewById(R.id.alramtext2);
 
         calendar = new GregorianCalendar();
 
@@ -106,6 +115,17 @@ public class Add_UnRepeat extends Fragment {
                         tomorrow.setBackground(ContextCompat.getDrawable(view.getContext(), R.drawable.bluebutton));
                         unstart.setText("");
                         break;
+                    case R.id.nonealram:
+                        setalram();
+                        starttime = 0;
+                        alramtext.setText("");
+                        nonealram.setBackground(ContextCompat.getDrawable(view.getContext(),R.drawable.bluebutton));
+                        break;
+                    case R.id.setalram:
+                        setalram();
+                        setDialog();
+                        setalram.setBackground(ContextCompat.getDrawable(view.getContext(),R.drawable.bluebutton));
+                        break;
                 }
             }
         };
@@ -115,13 +135,16 @@ public class Add_UnRepeat extends Fragment {
         three = view.findViewById(R.id.unthree);
         four = view.findViewById(R.id.unfour);
         five = view.findViewById(R.id.unfive);
+        nonealram = view.findViewById(R.id.nonealram);
+        setalram = view.findViewById(R.id.setalram);
 
         one.setOnClickListener(onClickListener);
         two.setOnClickListener(onClickListener);
         three.setOnClickListener(onClickListener);
         four.setOnClickListener(onClickListener);
         five.setOnClickListener(onClickListener);
-
+        nonealram.setOnClickListener(onClickListener);
+        setalram.setOnClickListener(onClickListener);
 
         dayset = view.findViewById(R.id.dayset);
         today = view.findViewById(R.id.today);
@@ -154,11 +177,16 @@ public class Add_UnRepeat extends Fragment {
         five.setBackground(ContextCompat.getDrawable(view.getContext(),R.drawable.graybutton));
     }
 
-    ////버튼 전체 색상 변경
+    //버튼 전체 색상 변경
     public void setdaycolor(){
         dayset.setBackground(ContextCompat.getDrawable(getContext(),R.drawable.graybutton));
         today.setBackground(ContextCompat.getDrawable(getContext(),R.drawable.graybutton));
         tomorrow.setBackground(ContextCompat.getDrawable(getContext(),R.drawable.graybutton));
+    }
+    //버튼 전체 색상 변경
+    public void setalram(){
+        setalram.setBackground(ContextCompat.getDrawable(view.getContext(),R.drawable.graybutton));
+        nonealram.setBackground(ContextCompat.getDrawable(view.getContext(),R.drawable.graybutton));
     }
 
     //날짜 생성 다이얼로그
@@ -179,6 +207,25 @@ public class Add_UnRepeat extends Fragment {
         setdaycolor();
         dayset.setBackground(ContextCompat.getDrawable(getContext(),R.drawable.bluebutton));
         datePicker.getDatePicker().setMinDate(System.currentTimeMillis());
+    }
+
+    public void setDialog(){
+        GregorianCalendar cal = new GregorianCalendar();
+
+        TimePickerDialog dialog = new TimePickerDialog(view.getContext(), android.R.style.Theme_Holo_Light_Dialog ,new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker timePicker, int i, int i1) {
+                starttime = i*100+i1;
+                if(i > 12){
+                    i-=12;
+                }
+
+                String time = String.format("%02d : %02d", i, i1);
+                alramtext.setText(time);
+            }
+        },cal.get(Calendar.HOUR_OF_DAY),cal.get(Calendar.MINUTE),false);
+
+        dialog.show();
     }
 
 }

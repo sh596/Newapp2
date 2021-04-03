@@ -83,11 +83,11 @@ public class Add_Activity extends AppCompatActivity {
             public void onClick(View view) {
                 if(repeate){
                     String name = add_repeat.edit.getText().toString();
-
                     if (!(name.getBytes().length == 0)){//제목이 없으면 추가되지 않음
                         int num = add_repeat.num;//우선 순위
                         int days = add_repeat.days;
-                        db.itemDao().insert(new Item(name,0,num,0,days,0,0,0));
+                        int starttime = add_repeat.starttime;
+                        db.itemDao().insert(new Item(name,0,starttime,num,0,days,0,0,0));
                         finish();
                     }else {
                         Toast.makeText(view.getContext(),"제목을 입력해주세요",Toast.LENGTH_SHORT).show();
@@ -101,7 +101,8 @@ public class Add_Activity extends AppCompatActivity {
                         int day = add_unRepeat.unday;
                         int month = add_unRepeat.unmonth;
                         int year = add_unRepeat.unyear;
-                        db.itemDao().insert(new Item(unname,0,num,0,0,year,
+                        int starttime = add_repeat.starttime;
+                        db.itemDao().insert(new Item(unname,0,starttime,num,0,0,year,
                                 month,day));
                         finish();
                     }else {

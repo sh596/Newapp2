@@ -1,6 +1,7 @@
 package com.example.newapp;
 
 import android.app.Dialog;
+import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,13 +9,17 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.TimePicker;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
-public class Add_Repeat extends Fragment {
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
+public class Add_Repeat extends Fragment{
 
     private View view;
     public int days;
@@ -37,8 +42,9 @@ public class Add_Repeat extends Fragment {
     private Button five;
 
     private Button nonealram;
-    private Button setalram
+    private Button setalram;
 
+    private TextView alramtext;
     private Dialog dialog;
     private Dialog timedialog;
     @Nullable
@@ -51,6 +57,7 @@ public class Add_Repeat extends Fragment {
 
         edit = view.findViewById(R.id.reedit);
 
+        alramtext = view.findViewById(R.id.alramtext1);
 
         Button.OnClickListener onClickListener = new Button.OnClickListener() {
             @Override
@@ -118,6 +125,17 @@ public class Add_Repeat extends Fragment {
                         five.setBackground(ContextCompat.getDrawable(view.getContext(),R.drawable.bluebutton));
                         num = 4;
                         break;
+                    case R.id.nonealram :
+                        setalram();
+                        starttime = 0;
+                        alramtext.setText("");
+                        nonealram.setBackground(ContextCompat.getDrawable(view.getContext(),R.drawable.bluebutton));
+                        break;
+                    case R.id.setalram :
+                        setalram();
+                        setDialog();
+                        setalram.setBackground(ContextCompat.getDrawable(view.getContext(),R.drawable.bluebutton));
+                        break;
                 }
             }
         };
@@ -135,6 +153,8 @@ public class Add_Repeat extends Fragment {
         three = view.findViewById(R.id.three);
         four = view.findViewById(R.id.four);
         five = view.findViewById(R.id.five);
+        nonealram = view.findViewById(R.id.nonealram);
+        setalram = view.findViewById(R.id.setalram);
 
         mon.setOnClickListener(onClickListener);
         tue.setOnClickListener(onClickListener);
@@ -149,6 +169,8 @@ public class Add_Repeat extends Fragment {
         three.setOnClickListener(onClickListener);
         four.setOnClickListener(onClickListener);
         five.setOnClickListener(onClickListener);
+        nonealram.setOnClickListener(onClickListener);
+        setalram.setOnClickListener(onClickListener);
 
         dialog = new Dialog(getContext());
         dialog.setContentView(R.layout.timer_dialog);
@@ -178,9 +200,23 @@ public class Add_Repeat extends Fragment {
         five.setBackground(ContextCompat.getDrawable(view.getContext(),R.drawable.graybutton));
     }
     //버튼 전체 색상 변경
-    public void sealram(){
+    public void setalram(){
+        setalram.setBackground(ContextCompat.getDrawable(view.getContext(),R.drawable.graybutton));
+        nonealram.setBackground(ContextCompat.getDrawable(view.getContext(),R.drawable.graybutton));
+    }
+    public void setDialog(){
+        GregorianCalendar cal = new GregorianCalendar();
 
+        TimePickerDialog dialog = new TimePickerDialog(view.getContext(), android.R.style.Theme_Holo_Light_Dialog ,new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker timePicker, int i, int i1) {
+                starttime = i*100+i1;
+                String time = String.format("%02d : %02d", i, i1);
+                alramtext.setText(time);
+            }
+        },cal.get(Calendar.HOUR_OF_DAY),cal.get(Calendar.MINUTE),false);
 
+        dialog.show();
     }
 
 

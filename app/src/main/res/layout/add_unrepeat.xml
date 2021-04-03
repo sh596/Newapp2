@@ -109,7 +109,7 @@
                 android:layout_gravity="center"
                 android:layout_marginLeft="5dp"
                 android:layout_weight="1"
-                android:fontFamily="@font/nanumsquarer"
+                android:fontFamily="@font/nanumsquareroundr"
                 android:gravity="center"
                 android:textColor="#353535"
                 android:textSize="12sp" />
@@ -256,6 +256,16 @@
                 android:fontFamily="@font/nanumsquareroundb"
                 android:text="알림 설정"
                 android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/alramtext2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:fontFamily="@font/nanumsquareroundr"
+                android:gravity="center"
+                android:textColor="#353535" />
 
         </LinearLayout>
 
