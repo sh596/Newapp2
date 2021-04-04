@@ -122,9 +122,7 @@ public class Add_UnRepeat extends Fragment {
                         nonealram.setBackground(ContextCompat.getDrawable(view.getContext(),R.drawable.bluebutton));
                         break;
                     case R.id.setalram:
-                        setalram();
                         setDialog();
-                        setalram.setBackground(ContextCompat.getDrawable(view.getContext(),R.drawable.bluebutton));
                         break;
                 }
             }
@@ -222,6 +220,8 @@ public class Add_UnRepeat extends Fragment {
 
                 String time = String.format("%02d : %02d", i, i1);
                 alramtext.setText(time);
+                setalram();
+                setalram.setBackground(ContextCompat.getDrawable(view.getContext(),R.drawable.bluebutton));
             }
         },cal.get(Calendar.HOUR_OF_DAY),cal.get(Calendar.MINUTE),false);
 

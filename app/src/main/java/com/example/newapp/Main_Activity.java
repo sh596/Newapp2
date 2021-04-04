@@ -1,6 +1,9 @@
 package com.example.newapp;
 
+import android.app.AlarmManager;
 import android.app.Notification;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -27,6 +30,8 @@ public class Main_Activity extends FragmentActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+
+        RDatabase db = RDatabase.getAppDatabase(this);
 
         GregorianCalendar calendar = new GregorianCalendar();
 
@@ -55,9 +60,30 @@ public class Main_Activity extends FragmentActivity {
 
         tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(vp);
+        for(int i = 0; i < db.itemDao().getstarttime().size(); i++){
+            Item time = db.itemDao().getstarttime().get(i);
+            int timevalue = time.starttime;
+            if(time.dayweek == 0){
+                GregorianCalendar cal = new GregorianCalendar(time.year,time.month,time.day,timevalue/100,timevalue%100);
+                setalarm(cal,false,i,time.title);
+            }else{
 
+            }
+        }
 
     }
+    public void setalarm(GregorianCalendar cal1, boolean repeate, int id, String title){
+        Intent intent = new Intent(this, AlaramReceiver.class);
+        PendingIntent pintent = PendingIntent.getBroadcast(this,id,intent, 0);
+        intent.putExtra("title",title);
 
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        if(repeate){
+            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,cal1.getTimeInMillis(),7*24*60*60*1000,pintent);
+        }
+        alarmManager.set(AlarmManager.RTC_WAKEUP,cal1.getTimeInMillis(),pintent);
+
+        alarmManager.cancel(pintent);
+    }
 
 }
