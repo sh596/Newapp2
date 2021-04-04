@@ -3,6 +3,7 @@ package com.example.newapp;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -29,7 +31,7 @@ public class Add_UnRepeat extends Fragment {
     public int unday;
     public int unnum;
     public EditText unedittext;
-    public int starttime;
+    public int starttime = 0;
 
     private Button one;
     private Button two;
@@ -105,7 +107,7 @@ public class Add_UnRepeat extends Fragment {
                         unday = calendar.get(Calendar.DATE);
                         today.setBackground(ContextCompat.getDrawable(view.getContext(), R.drawable.bluebutton));
                         unstart.setText("");
-
+                        setnonestarttime();
                         break;
                     case R.id.tomorrow:
                         setdaycolor();
@@ -114,6 +116,7 @@ public class Add_UnRepeat extends Fragment {
                         unday = calendar.get(Calendar.DATE) + 1;
                         tomorrow.setBackground(ContextCompat.getDrawable(view.getContext(), R.drawable.bluebutton));
                         unstart.setText("");
+                        setnonestarttime();
                         break;
                     case R.id.nonealram:
                         setalram();
@@ -156,6 +159,7 @@ public class Add_UnRepeat extends Fragment {
         dayset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                setnonestarttime();
                 showdayDailog();
             }
         });
@@ -207,24 +211,33 @@ public class Add_UnRepeat extends Fragment {
         datePicker.getDatePicker().setMinDate(System.currentTimeMillis());
     }
 
-    public void setDialog(){
-        GregorianCalendar cal = new GregorianCalendar();
+    public void setnonestarttime(){
+        nonealram.setBackground(ContextCompat.getDrawable(view.getContext(), R.drawable.bluebutton));
+        starttime = 0;
+    }
 
-        TimePickerDialog dialog = new TimePickerDialog(view.getContext(), android.R.style.Theme_Holo_Light_Dialog ,new TimePickerDialog.OnTimeSetListener() {
+    public void setDialog(){
+        final GregorianCalendar cal = new GregorianCalendar();
+
+        TimePickerDialog dialog = new TimePickerDialog(view.getContext(),
+                android.R.style.Theme_Holo_Light_Dialog ,new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker timePicker, int i, int i1) {
-                starttime = i*100+i1;
-                if(i > 12){
-                    i-=12;
+                GregorianCalendar cal2 = new GregorianCalendar(unyear,unmonth,unday,i,i1);
+                if(cal.getTimeInMillis() > cal2.getTimeInMillis()){
+                    Toast.makeText(view.getContext(), "현재 시간보다 미래 시간을 선택해주세요", Toast.LENGTH_SHORT).show();
+                }else{
+                    starttime = i*100+i1;
+                    if(i > 12){
+                        i-=12;
+                    }
+                    String time = String.format("%02d : %02d", i, i1);
+                    alramtext.setText(time);
+                    setalram();
+                    setalram.setBackground(ContextCompat.getDrawable(view.getContext(),R.drawable.bluebutton));
                 }
-
-                String time = String.format("%02d : %02d", i, i1);
-                alramtext.setText(time);
-                setalram();
-                setalram.setBackground(ContextCompat.getDrawable(view.getContext(),R.drawable.bluebutton));
             }
         },cal.get(Calendar.HOUR_OF_DAY),cal.get(Calendar.MINUTE),false);
-
         dialog.show();
     }
 

@@ -54,7 +54,7 @@ public class Todolist_recycler extends RecyclerView.Adapter<Todolist_recycler.Vi
 
         TextView stop;
         TextView todo;
-        TextView start;
+        TextView starttime;
 
         ImageView startbtn;
         ImageView hex;
@@ -65,6 +65,7 @@ public class Todolist_recycler extends RecyclerView.Adapter<Todolist_recycler.Vi
 
             todo = itemView.findViewById(R.id.todo1);
             stop = itemView.findViewById(R.id.stop);
+            starttime = itemView.findViewById(R.id.starttime);
             startbtn = itemView.findViewById(R.id.startbtn); //실행 버튼
             hex = itemView.findViewById(R.id.hex);
         }
@@ -87,6 +88,13 @@ public class Todolist_recycler extends RecyclerView.Adapter<Todolist_recycler.Vi
                     }
                 }
             });
+            if(item.starttime/100 > 12){
+                String startvalue = String.format("%02d:%02d",item.starttime/100-12,item.starttime%100);
+                starttime.setText(startvalue+"pm 시작");
+            }else{
+                String startvalue = String.format("%02d:%02d",item.starttime/100,item.starttime%100);
+                starttime.setText(startvalue+"am 시작");
+            }
             //우선 순위에 따른 색상값
             switch (item.priority){
                 case 0:

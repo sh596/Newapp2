@@ -108,7 +108,7 @@ public class Add_Activity extends AppCompatActivity {
                         int day = add_unRepeat.unday;
                         int month = add_unRepeat.unmonth;
                         int year = add_unRepeat.unyear;
-                        int starttime = add_repeat.starttime;
+                        int starttime = add_unRepeat.starttime;
                         db.itemDao().insert(new Item(unname,0,starttime,num,0,0,year,
                                 month,day));
                         finish();

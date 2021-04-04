@@ -23,7 +23,7 @@ public interface ItemDao {
     //특정 날짜에 맞는 데이터을 구하는 쿼리
     @Query("SELECT * FROM item WHERE dayweek = '0' AND year = :y AND month = :m AND day = :d AND pri = :i ")
     List<Item> getday (int y, int m, int d, int i);
-    @Query("SELECT * FROM item WHERE starttime = NOT 0")
+    @Query("SELECT * FROM item WHERE starttime != 0")
     List<Item> getstarttime ();
     //특정 데이터 삭제
     @Query("DELETE FROM item WHERE id = :id")

@@ -16,8 +16,8 @@ public class AlaramReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         RDatabase db = RDatabase.getAppDatabase(context);
-        Item day = db.itemDao().getstarttime().get(1);
 
+        int id = intent.getIntExtra("id",0);
         String title = intent.getStringExtra("title");
 
         NotificationManager notificationManager = (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
@@ -47,12 +47,12 @@ public class AlaramReceiver extends BroadcastReceiver {
                 .setDefaults(NotificationCompat.DEFAULT_ALL)
                 .setWhen(System.currentTimeMillis())
                 .setSmallIcon(R.drawable.ic_hexagon)
-                .setContentTitle(title)
+                .setContentTitle("test")
                 .setContentText("할 일이 생겼어요")
                 .setContentInfo("INFO")
                 .setContentIntent(pintent);
         if(notificationManager != null){
-            notificationManager.notify(1234,builder.build());
+            notificationManager.notify(id,builder.build());
         }
 
     }
