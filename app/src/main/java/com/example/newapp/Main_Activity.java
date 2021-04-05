@@ -62,34 +62,10 @@ public class Main_Activity extends FragmentActivity {
         tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(vp);
 
-        for(int i = 0; i < db.itemDao().getstarttime().size(); i++){
-            Item time = db.itemDao().getstarttime().get(i);
-            int timevalue = time.starttime;
-            if(time.dayweek == 0){
-                Calendar cal = Calendar.getInstance();
-                cal.set(time.year,time.month,time.day,timevalue/100,timevalue%100);
-                if(calendar.getTimeInMillis() < cal.getTimeInMillis()){
-                    setalarm(cal,false,i,time.title);
-                    Log.d("알림","알림 설정");
-                }
-            }else{
 
-            }
-        }
+
 
     }
-    public void setalarm(Calendar cal, boolean repeate, int id, String title){
-        Intent intent = new Intent(this, AlaramReceiver.class);
-        PendingIntent pintent = PendingIntent.getBroadcast(this,id,intent, 0);
-        intent.putExtra("title",title);
-        intent.putExtra("id",id);
 
-        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        if(repeate){
-            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,cal.getTimeInMillis(),7*24*60*60*1000,pintent);
-        }else{
-            alarmManager.set(AlarmManager.RTC_WAKEUP,cal.getTimeInMillis(),pintent);
-        }
-    }
 
 }

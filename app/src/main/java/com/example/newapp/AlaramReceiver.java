@@ -7,6 +7,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
+import android.util.Log;
 
 import androidx.core.app.NotificationCompat;
 
@@ -17,8 +18,10 @@ public class AlaramReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         RDatabase db = RDatabase.getAppDatabase(context);
 
-        int id = intent.getIntExtra("id",0);
+        int id = intent.getIntExtra("id", 0);
         String title = intent.getStringExtra("title");
+        Log.d("title",title);
+        Log.d("time",ㄴ)
 
         NotificationManager notificationManager = (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
         Intent notify = new Intent(context,Main_Activity.class);
@@ -43,11 +46,12 @@ public class AlaramReceiver extends BroadcastReceiver {
                 notificationManager.createNotificationChannel(channel);
             }
         }else builder.setSmallIcon(R.mipmap.ic_logo_round);
-        builder.setAutoCancel(true)
+        builder
+                .setAutoCancel(true)
                 .setDefaults(NotificationCompat.DEFAULT_ALL)
                 .setWhen(System.currentTimeMillis())
                 .setSmallIcon(R.drawable.ic_hexagon)
-                .setContentTitle("test")
+                .setContentTitle(title)
                 .setContentText("할 일이 생겼어요")
                 .setContentInfo("INFO")
                 .setContentIntent(pintent);
