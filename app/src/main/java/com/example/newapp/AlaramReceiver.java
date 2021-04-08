@@ -7,6 +7,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
+import android.os.Bundle;
 import android.util.Log;
 
 import androidx.core.app.NotificationCompat;
@@ -18,10 +19,10 @@ public class AlaramReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         RDatabase db = RDatabase.getAppDatabase(context);
 
-        int id = intent.getIntExtra("id", 0);
-        String title = intent.getStringExtra("title");
-        Log.d("title",title);
-        Log.d("time",ㄴ)
+        Bundle bundle = intent.getExtras();
+        int id = bundle.getInt("id");
+        String title = bundle.getString("title");
+        Log.d("id", "id : " + id);
 
         NotificationManager notificationManager = (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
         Intent notify = new Intent(context,Main_Activity.class);

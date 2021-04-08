@@ -90,12 +90,12 @@ public class Month extends Fragment {
         calender.setLayoutManager(manager);
         calender.setAdapter(adapter);
 
-        for(int i = 0; i < 4; i++){
+        for(int i = 0; i < 5; i++){
             for (int s = 0; s < db.itemDao().getday(y,m,cal.get(Calendar.DATE),i).size(); s++){
                 adapter2.additem(db.itemDao().getday(y,m,cal.get(Calendar.DATE),i).get(s));
             }
         }
-        for (int i = 0; i < 4; i++ ){
+        for (int i = 0; i < 5; i++){
             for (int j= 0; j < db.itemDao().getdayweek(dtoday%7,i).size(); j++){
                 adapter2.additem(db.itemDao().getdayweek(dtoday%7,i).get(j));
             }
@@ -201,12 +201,12 @@ public class Month extends Fragment {
         RDatabase db = RDatabase.getAppDatabase(getContext());
 
         adapter2.removeall();
-        for(int i = 0; i < 4; i++){
+        for(int i = 0; i < 5; i++){
             for (int s = 0; s < db.itemDao().getday(y,m,cal.get(Calendar.DATE),i).size(); s++){
                 adapter2.additem(db.itemDao().getday(y,m,cal.get(Calendar.DATE),i).get(s));
             }
         }
-        for (int i = 0; i < 4; i++ ){
+        for (int i = 0; i < 5; i++ ){
             for (int j= 0; j < db.itemDao().getdayweek(d+cal.get(Calendar.DATE)%7,i).size(); j++){
                 adapter2.additem(db.itemDao().getdayweek(d+cal.get(Calendar.DATE)%7,i).get(j));
             }

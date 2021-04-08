@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-public class Today extends Fragment  {
+public class Today extends Fragment {
     private View view;
     public ArrayList<Item> list1;
     public ArrayList<Item> list2;
@@ -52,24 +52,24 @@ public class Today extends Fragment  {
 
         calendar = new GregorianCalendar();
 
-        for (int i = 0; i < 4; i++){
+        for (int i = 0; i < 5; i++){
             for (int s = 0; s < db.itemDao().getdaycom(calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),calendar.get(Calendar.DATE),i,0).size(); s++){
                 adapter1.additem(db.itemDao().getdaycom(calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),calendar.get(Calendar.DATE),i,0).get(s));
             }
         }
-        for (int i = 0; i < 4; i++){
+        for (int i = 0; i < 5; i++){
             for (int s = 0; s < db.itemDao().getdayweekcom(calendar.get(Calendar.DAY_OF_WEEK),i,0).size(); s++){
                 adapter1.additem(db.itemDao().getdayweekcom(calendar.get(Calendar.DAY_OF_WEEK),i,0).get(s));
             }
         }
 
 
-        for (int i = 0; i < 4; i++){
+        for (int i = 0; i < 5; i++){
             for (int s = 0; s < db.itemDao().getdaycom(calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),calendar.get(Calendar.DATE),i,1).size(); s++){
                 adapter2.additem(db.itemDao().getdaycom(calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),calendar.get(Calendar.DATE),i,1).get(s));
             }
         }
-        for (int i = 0; i < 4; i++){
+        for (int i = 0; i < 5; i++){
             for (int s = 0; s < db.itemDao().getdayweekcom(calendar.get(Calendar.DAY_OF_WEEK),i,1).size(); s++){
                 adapter2.additem(db.itemDao().getdayweekcom(calendar.get(Calendar.DAY_OF_WEEK),i,1).get(s));
             }
@@ -112,25 +112,25 @@ public class Today extends Fragment  {
         adapter1 = new Todolist_recycler(list1);
         adapter2 = new Todolist_recycler(list2);
 
-        for (int i = 0; i < 4; i++){
+        for (int i = 0; i < 5; i++){
             for (int s = 0; s < db.itemDao().getdaycom(calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),calendar.get(Calendar.DATE),i,0).size(); s++){
                 adapter1.additem(db.itemDao().getdaycom(calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),calendar.get(Calendar.DATE),i,0).get(s));
             }
         }
 
-        for (int i = 0; i < 4; i++){
+        for (int i = 0; i < 5; i++){
             for (int s = 0; s < db.itemDao().getdayweekcom(calendar.get(Calendar.DAY_OF_WEEK),i,0).size(); s++){
                 adapter1.additem(db.itemDao().getdayweekcom(calendar.get(Calendar.DAY_OF_WEEK),i,0).get(s));
             }
         }
 
 
-        for (int i = 0; i < 4; i++){
+        for (int i = 0; i < 5; i++){
             for (int s = 0; s < db.itemDao().getdaycom(calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),calendar.get(Calendar.DATE),i,1).size(); s++){
                 adapter2.additem(db.itemDao().getdaycom(calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),calendar.get(Calendar.DATE),i,1).get(s));
             }
         }
-        for (int i = 0; i < 4; i++){
+        for (int i = 0; i < 5; i++){
             for (int s = 0; s < db.itemDao().getdayweekcom(calendar.get(Calendar.DAY_OF_WEEK),i,1).size(); s++){
                 adapter2.additem(db.itemDao().getdayweekcom(calendar.get(Calendar.DAY_OF_WEEK),i,1).get(s));
             }

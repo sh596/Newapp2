@@ -98,8 +98,6 @@ public class Add_Activity extends AppCompatActivity {
                         int days = add_repeat.days;
                         int starttime = add_repeat.starttime;
                         db.itemDao().insert(new Item(name,0,starttime,num,0,days,0,0,0));
-
-
                         finish();
                     }else {
                         Toast.makeText(view.getContext(),"제목을 입력해주세요",Toast.LENGTH_SHORT).show();
