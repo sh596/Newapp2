@@ -91,9 +91,13 @@ public class Todolist_recycler extends RecyclerView.Adapter<Todolist_recycler.Vi
             if(item.starttime/100 > 12){
                 String startvalue = String.format("%02d:%02d",item.starttime/100-12,item.starttime%100);
                 starttime.setText(startvalue+"pm 시작");
-            }else{
+            }
+            else{
                 String startvalue = String.format("%02d:%02d",item.starttime/100,item.starttime%100);
                 starttime.setText(startvalue+"am 시작");
+            }
+            if(item.starttime == 2500){
+                starttime.setText("");
             }
             //우선 순위에 따른 색상값
             switch (item.priority){

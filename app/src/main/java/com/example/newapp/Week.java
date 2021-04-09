@@ -94,7 +94,7 @@ public class Week extends Fragment{
                 mcalendarlist.add(new DateItem(weekday, 2));
                 weekday++;
             }
-            for(int i = firstday; i < day + 8 - week; i++){
+            for(int i = firstday; i < day + 9 - week; i++){
                 mcalendarlist.add(new DateItem(i,1));
             }
         }else if(day + 7 - week > lastday){

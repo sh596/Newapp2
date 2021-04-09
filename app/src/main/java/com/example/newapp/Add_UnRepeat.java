@@ -31,7 +31,7 @@ public class Add_UnRepeat extends Fragment {
     public int unday;
     public int unnum;
     public EditText unedittext;
-    public int starttime = 0;
+    public int starttime = 2500;
 
     private Button one;
     private Button two;
@@ -120,7 +120,7 @@ public class Add_UnRepeat extends Fragment {
                         break;
                     case R.id.nonealram:
                         setalram();
-                        starttime = 0;
+                        starttime = 2500;
                         alramtext.setText("");
                         nonealram.setBackground(ContextCompat.getDrawable(view.getContext(),R.drawable.bluebutton));
                         break;
