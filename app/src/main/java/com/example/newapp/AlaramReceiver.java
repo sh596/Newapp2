@@ -19,9 +19,8 @@ public class AlaramReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         RDatabase db = RDatabase.getAppDatabase(context);
 
-        Bundle bundle = intent.getExtras();
-        int id = bundle.getInt("id");
-        String title = bundle.getString("title");
+        final int id = intent.getExtras().getInt("id",0);
+        final String title = (String) intent.getExtras().get("title");
         Log.d("id", "id : " + id);
 
         NotificationManager notificationManager = (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);

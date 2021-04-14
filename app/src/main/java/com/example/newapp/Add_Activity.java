@@ -122,14 +122,14 @@ public class Add_Activity extends AppCompatActivity {
                         }
 
                         for(int i = 0; i < db.itemDao().getstarttime().size(); i++){
-                            Item time = db.itemDao().getstarttime().get(i);
-                            int timevalue = time.starttime;
+                            Item item = db.itemDao().getstarttime().get(i);
+                            int timevalue = item.starttime;
                             PendingIntent pintent = PendingIntent.getBroadcast(view.getContext(),i,intent, 0);
-                            if(time.dayweek == 0){
+                            if(item.dayweek == 0){
                                 Calendar cal2 = Calendar.getInstance();
-                                cal2.set(time.year,time.month,time.day,timevalue/100,timevalue%100);
+                                cal2.set(item.year,item.month,item.day,timevalue/100,timevalue%100);
                                 if(cal2.getTimeInMillis() >= cal.getTimeInMillis()){
-                                    setalarm(alarmManager,cal2,false,i,time.title,pintent,intent);
+                                    setalarm(alarmManager,cal2,false,i,item.title,pintent,intent);
                                     Log.d("알림","알림 설정");
                                 }
                             }
